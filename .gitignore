@@ -1,0 +1,4 @@
+data/features/
+.DS_Store/
+__pycache__/
+

@@ -1,0 +1,11 @@
+name: prot-class
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - scikit-learn
+  - tqdm
+  - python=3.8
+  - multiprocess
+prefix: /Users/dzb5732/opt/anaconda3/envs/prot-class
