@@ -10,7 +10,7 @@ outputdir = 'out/'
 
 def generatePSSMProfile(fastas, outDir, blastpgp, db):
 	"""
-	Generate PSSM file by using the psi-blast program in NCBI blast-2.2.18 package.
+	Generate PSSM file by using the psi-blast program in NCBI blast-2.9.0 package.
 
 	Parameters
 	----------
@@ -53,7 +53,7 @@ if __name__ == '__main__':
 	parser.add_argument("--db", help="the path of uniref50 database")
 	args = parser.parse_args()
 
-	blastpgp = args.blastpgp if args.blastpgp != None else ncbidir + 'psiblast' #ncbidir + '/blastpgp'
+	blastpgp = args.blastpgp if args.blastpgp != None else ncbidir + 'psiblast' 
 	db = args.db if args.db != None else dbName
 	fastas = readFasta.readFasta(args.file)
 	outputDir = generatePSSMProfile(fastas, outputdir, blastpgp, db)
