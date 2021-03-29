@@ -1,7 +1,5 @@
-#!/usr/bin/env python
-#_*_coding:utf-8_*_
-
 import re
+
 
 def checkFasta(fastas):
 	status = True
@@ -13,12 +11,14 @@ def checkFasta(fastas):
 	else:
 		return False
 
+
 def minSequenceLength(fastas):
 	minLen = 10000
 	for i in fastas:
 		if minLen > len(i[1]):
 			minLen = len(i[1])
 	return minLen
+
 
 def minSequenceLengthWithNormalAA(fastas):
 	minLen = 10000

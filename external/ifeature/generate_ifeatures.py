@@ -1,4 +1,4 @@
-from external.ifeature.codes import readFasta, saveCode, AAC, CKSAAP, TPC, DPC, DDE, GAAC, CKSAAGP, GTPC, GDPC, Moran,\
+from codes import readFasta, saveCode, AAC, CKSAAP, TPC, DPC, DDE, GAAC, CKSAAGP, GTPC, GDPC, Moran,\
 	Geary, NMBroto, CTDC, CTDT, CTDD, CTriad, KSCTriad, SOCNumber, QSOrder, PAAC, APAAC
 
 
@@ -31,7 +31,7 @@ def get_feature(protein_fasta_file, feature_type, output_dir):
 
 def get_features():
 	out_dir_prefix = './data/features/ifeature/featfiles/'
-	for ft in feat_types[:4]:
+	for ft in feat_types:
 		get_feature(train_fasta_file, ft, out_dir_prefix+'train/')
 		get_feature(test_fasta_file, ft, out_dir_prefix+'test/')
 	return

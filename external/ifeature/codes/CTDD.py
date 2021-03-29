@@ -1,7 +1,6 @@
-#!/usr/bin/env python
-#_*_coding:utf-8_*_
+import math
+import re
 
-import re, math
 
 def Count(aaSet, sequence):
 	number = 0

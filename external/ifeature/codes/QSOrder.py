@@ -1,30 +1,15 @@
-#!/usr/bin/env python
-#_*_coding:utf-8_*_
-
-import sys, platform, os, re
+import re
 import numpy as np
-pPath = os.path.split(os.path.realpath(__file__))[0]
-sys.path.append(pPath)
-import checkFasta
-import readFasta
-import saveCode
+from . import checkFasta
 
-USAGE = """
-USAGE:
-	python QSO.py input.fasta <nlag> <output>
-
-	input.fasta:      the input protein sequence file in fasta format.
-	nlag:             the nlag value, integer, defaule: 30
-	output:           the encoding file, default: 'encodings.tsv'
-"""
 
 def QSOrder(fastas, nlag=30, w=0.1, **kw):
 	if checkFasta.minSequenceLengthWithNormalAA(fastas) < nlag + 1:
 		print('Error: all the sequence length should be larger than the nlag+1: ' + str(nlag + 1) + '\n\n')
 		return 0
 
-	dataFile = re.sub('codes$', '', os.path.split(os.path.realpath(__file__))[0]) + r'\data\Schneider-Wrede.txt' if platform.system() == 'Windows' else re.sub('codes$', '', os.path.split(os.path.realpath(__file__))[0]) + '/data/Schneider-Wrede.txt'
-	dataFile1 = re.sub('codes$', '', os.path.split(os.path.realpath(__file__))[0]) + r'\data\Grantham.txt' if platform.system() == 'Windows' else re.sub('codes$', '', os.path.split(os.path.realpath(__file__))[0]) + '/data/Grantham.txt'
+	dataFile = './external/ifeature/data/Schneider-Wrede.txt'
+	dataFile1 = './external/ifeature/data/Grantham.txt'
 
 	AA = 'ACDEFGHIKLMNPQRSTVWY'
 	AA1 = 'ARNDCQEGHILKMFPSTWYV'
@@ -91,13 +76,3 @@ def QSOrder(fastas, nlag=30, w=0.1, **kw):
 			code.append((w * num) / (1 + w * sum(arrayGM)))
 		encodings.append(code)
 	return encodings
-
-if __name__ == '__main__':
-	if len(sys.argv) == 1:
-		print(USAGE)
-		sys.exit(1)
-	fastas = readFasta.readFasta(sys.argv[1])
-	nlag = int(sys.argv[2]) if len(sys.argv) >= 3 else 30
-	output = sys.argv[3] if len(sys.argv) >= 4 else 'encoding.tsv'
-	encodings = QSOrder(fastas, nlag)
-	saveCode.savetsv(encodings, output)

@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-#_*_coding:utf-8_*_
-
 import re
 
 """
@@ -37,6 +34,7 @@ def CTriad(fastas, **kw):
 	return encodings
 """
 
+
 def CalculateKSCTriad(sequence, gap, features, AADict):
 	res = []
 	for g in range(gap+1):
@@ -54,6 +52,7 @@ def CalculateKSCTriad(sequence, gap, features, AADict):
 			res.append((myDict[f] - minValue) / maxValue)
 
 	return res
+
 
 def CTriad(fastas, gap = 0, **kw):
 	AAGroup = {

@@ -1,4 +1,6 @@
-import re, os, sys
+import re
+import os
+import sys
 
 
 def readFasta(file):

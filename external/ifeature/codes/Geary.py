@@ -1,11 +1,7 @@
 import re
-import argparse
 import numpy as np
-pPath = os.path.split(os.path.realpath(__file__))[0]
-sys.path.append(pPath)
-import checkFasta
-import readFasta
-import saveCode
+from . import checkFasta
+
 
 def Geary(fastas, props=['CIDH920105', 'BHAR880101', 'CHAM820101', 'CHAM820102',
 						 'CHOC760101', 'BIGC670101', 'CHAM810101', 'DAYM780201'],
@@ -15,7 +11,7 @@ def Geary(fastas, props=['CIDH920105', 'BHAR880101', 'CHAM820101', 'CHAM820102',
 		return 0
 
 	AA = 'ARNDCQEGHILKMFPSTWYV'
-	fileAAidx = re.sub('codes$', '', os.path.split(os.path.realpath(__file__))[0]) + r'\data\AAidx.txt' if platform.system() == 'Windows' else sys.path[0] + '/data/AAidx.txt'
+	fileAAidx = './external/ifeature/data/AAidx.txt'
 	with open(fileAAidx) as f:
 		records = f.readlines()[1:]
 	myDict = {}
@@ -69,20 +65,3 @@ def Geary(fastas, props=['CIDH920105', 'BHAR880101', 'CHAM820101', 'CHAM820102',
 				code.append(rn)
 		encodings.append(code)
 	return encodings
-
-if __name__ == '__main__':
-	parser = argparse.ArgumentParser(usage="it's usage tip.",
-									 description="Moran descriptor")
-	parser.add_argument("--file", required=True, help="input fasta file")
-	parser.add_argument("--props", help="input fasta file")
-	parser.add_argument("--nlag", help="input fasta file")
-	parser.add_argument("--out", dest='outFile', help="the generated descriptor file")
-	args = parser.parse_args()
-
-	fastas = readFasta.readFasta(args.file)
-	props = args.props.split(':') if args.props != None else ['CIDH920105', 'BHAR880101', 'CHAM820101', 'CHAM820102',
-															  'CHOC760101', 'BIGC670101', 'CHAM810101', 'DAYM780201']
-	nlag = int(args.nlag) if args.nlag != None else 30
-	output = args.outFile if args.outFile != None else 'encoding.tsv'
-	encodings = Geary(fastas, props, nlag)
-	saveCode.savetsv(encodings, output)

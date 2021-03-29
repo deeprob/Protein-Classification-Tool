@@ -1,5 +1,5 @@
 import re
-from external.ifeature.codes import checkFasta
+from . import checkFasta
 
 USAGE = """
 USAGE:
