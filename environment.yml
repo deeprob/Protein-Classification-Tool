@@ -8,4 +8,5 @@ dependencies:
   - tqdm
   - python=3.8
   - multiprocess
+  - pandas
 prefix: /Users/dzb5732/opt/anaconda3/envs/prot-class

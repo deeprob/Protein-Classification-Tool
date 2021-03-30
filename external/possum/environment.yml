@@ -1,0 +1,11 @@
+name: possum-env
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - scipy
+  - numpy
+  - pandas
+  - python=2.7
+prefix: /Users/dzb5732/opt/anaconda3/envs/possum-env
