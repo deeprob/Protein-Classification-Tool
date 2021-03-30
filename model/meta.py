@@ -14,5 +14,5 @@ class Ensemble:
         pass
 
     def _get_predictions(self):
-        preds = [np.argmax(np.bincount(np.array(tup))) for tup in zip(*self.modelpreds)]
+        preds = [np.argmax(np.bincount(np.array(tup))) for tup in zip(*self.model_preds)]
         return preds

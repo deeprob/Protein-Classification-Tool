@@ -207,12 +207,12 @@ class TEClassification(Base):
         pass
 
     def get_kernel_trainfeatdirs(self, trainfeatdirs):
-        kernel_trainfeaturefiledirs = [d for d in trainfeatdirs if 'kernelMethods' in d]
+        kernel_trainfeaturefiledirs = [d for d in trainfeatdirs if 'kernel' in d]
         assert len(kernel_trainfeaturefiledirs) == 1
         return kernel_trainfeaturefiledirs[0]
 
     def get_kernel_testfeatdirs(self, testfeatdirs):
-        kernel_testfeaturefiledirs = [d for d in testfeatdirs if 'kernelMethods' in d]
+        kernel_testfeaturefiledirs = [d for d in testfeatdirs if 'kernel' in d]
         assert len(kernel_testfeaturefiledirs) == 1
         return kernel_testfeaturefiledirs[0]
 
